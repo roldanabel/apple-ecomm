@@ -1,0 +1,29 @@
+[
+    {
+      "id": 1,
+      "name": "iPhone 14",
+      "price": 1400,
+      "description":
+        "Chip A15 Bionic. Velocidad sin caducidad y tirarás de sol a sol sin pasar por el enchufe",
+      "stock": 3,
+      "category": "i14"
+    },
+    {
+      "id": 2,
+      "name": "iPhone 13",
+      "price": 1200,
+      "description":
+        "Tu nuevo superpoder. Nuestro sistema de dos cámaras más avanzado. Un chip superrápido que deja atrás a la competencia. Un gran salto en duración de batería que vas a notar todos los días. Ceramic Shield: más resistente que cualquier vidrio de smartphone. Diseño resistente con bordes planos.",
+      "stock": 8,
+      "category": "i13"
+    },
+    {
+      "id": 3,
+      "name": "iPhone 12",
+      "price": 1000,
+      "description":
+        "Tecnología 5G. Chip A14 Bionic, el más veloz en un smartphone. Pantalla OLED de borde a borde. Ceramic Shield, cuatro veces más resistente a las caídas. Modo Noche en cada una de las cámaras.",
+      "stock": 3,
+      "category": "i12"
+    }
+  ]
