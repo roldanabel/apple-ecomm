@@ -4,9 +4,12 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import NavBar from "./components/NavBar";
 import Welcome from "./components/Welcome";
 import Cart from "./components/Cart";
+import { ShoppingCartProvider } from "./context/CartContext";
+
 
 function App() {
   return (
+    <ShoppingCartProvider>
     <BrowserRouter>
       <NavBar />
       <Routes>
@@ -21,6 +24,7 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
+    </ShoppingCartProvider>
   );
 }
 

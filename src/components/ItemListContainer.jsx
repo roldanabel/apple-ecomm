@@ -1,40 +1,29 @@
+import { useState, useEffect } from "react";
 import ItemList from "./ItemList";
-import Data from "../data.json";
 import { useParams } from "react-router-dom";
-import { Heading, Center } from "@chakra-ui/react";
+import { collection, getDocs, getFirestore } from "firebase/firestore";
+
 const ItemListContainer = () => {
+  const [bikes, setBikes] = useState([]);
   const { category } = useParams();
 
-  const getDatos = () => {
-    return new Promise((resolve, reject) => {
-      if (Data.length === 0) {
-        reject(new Error("No hay datos"));
-      }
-      setTimeout(() => {
-        resolve(Data);
-      }, 2000);
+  useEffect(() => {
+    const db = getFirestore();
+    const bikesCollection = collection(db, "telefonos");
+    getDocs(bikesCollection).then((querySnapshot) => {
+      const bikes = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setBikes(bikes);
     });
-  };
+  }, []);
 
-  async function fetchingData() {
-    try {
-      const datosFetched = await getDatos();
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  const catFilter = bikes.filter((bike) => bike.category === category);
 
-  fetchingData();
-
-  const catFilter = Data.filter((bike) => bike.category === category);
   return (
     <div>
-      <Center bg="#D6EAF8" h="100px" color="black">
-        <Heading as="h2" size="2xl">
-          iPhones por categoría
-        </Heading>
-      </Center>
-      {category ? <ItemList bikes={catFilter} /> : <ItemList bikes={Data} />}
+      {category ? <ItemList bikes={catFilter} /> : <ItemList bikes={bikes} />}
     </div>
   );
 };

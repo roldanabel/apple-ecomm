@@ -10,3 +10,15 @@ Acá un ejemplo de navegación:
 
 ![navegación](/src//assets/pantalla.gif)
 
+* Para ejecutar el código
+
+### `npm run dev`
+
+* Librería utilizada
+
+1. Vite
+1. ChakraUI para visuales
+1. React-router-dom
+1. Base de datos NoSQL Firebase
+
+[Linkedin] (https://www.linkedin.com/in/abelroldan/)

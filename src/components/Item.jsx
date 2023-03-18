@@ -1,5 +1,5 @@
 import React from "react";
-import bike from "../assets/iphone.jpg";
+import phone from "../assets/iphone.jpg";
 import {
   Center,
   Card,
@@ -20,7 +20,7 @@ const Item = ({ id, name, stock, category }) => {
         <Center p="1rem">
           <Card className="card-main">
             <CardBody>
-              <Image borderRadius="lg" src={bike} />
+              <Image borderRadius="lg" src={phone} />
               <Stack mt="6" spacing="3">
                 <Heading size="md">{name}</Heading>
 
