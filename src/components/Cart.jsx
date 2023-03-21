@@ -18,6 +18,8 @@ import {
 import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import SendOrder from "./SendOrder";
+import { Link } from "react-router-dom";
+
 
 
 const Cart = () => {
@@ -39,6 +41,11 @@ const Cart = () => {
       </Center>
           <h2>Tu carrito esta vacio!</h2>
           <h4>Te invitamos a seguir navegando nuestros productos</h4>
+          <Box p="10" w="300px" h="100">
+            <Heading size="md">
+              <Link to={"/catalogue"}>Seguir navegando</Link>
+            </Heading>
+          </Box>
         </div>
         :<div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
         <Center bg="#ffffff" h="100px" color="black">

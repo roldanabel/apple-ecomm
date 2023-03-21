@@ -15,7 +15,7 @@ import ItemCount from "./ItemCount";
 import { useEffect, useState } from "react";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
-const ItemDetail = ({ bikes }) => {
+const ItemDetail = ({ phones }) => {
   const { id } = useParams();
 
   const [producto, setProducto] = useState([]);
@@ -23,9 +23,9 @@ const ItemDetail = ({ bikes }) => {
   useEffect(() => {
     const db = getFirestore();
 
-    const biciRef = doc(db, "telefonos", `${id}`);
+    const phoneRef = doc(db, "telefonos", `${id}`);
 
-    getDoc(biciRef).then((snapshot) => {
+    getDoc(phoneRef).then((snapshot) => {
       if (snapshot.exists()) {
         setProducto(snapshot.data());
       } else {
@@ -34,39 +34,39 @@ const ItemDetail = ({ bikes }) => {
     });
   }, []);
 
-  const bikeFilter = bikes.filter((bike) => bike.id == id);
+  const phoneFilter = phones.filter((phone) => phone.id == id);
 
   return (
     <>
-      {bikeFilter.map((bike) => (
-        <div key={bike.id}>
+      {phoneFilter.map((phone) => (
+        <div key={phone.id}>
           <Center p="1rem">
             <Card className="card-main">
               <CardBody>
-                <Image borderRadius="lg" src={bike.image} />
+                <Image borderRadius="lg" src={phone.image} />
                 <Stack mt="6" spacing="3">
-                  <Heading size="md">{bike.name}</Heading>
+                  <Heading size="md">{phone.name}</Heading>
                   <Text color="blue.800" fontSize="l">
-                    Descripción: {bike.description}
+                    Descripción: {phone.description}
                   </Text>
                   <Text color="blue.800" fontSize="l">
-                    Categoría: {bike.category}
+                    Categoría: {phone.category}
                   </Text>
                   <Text color="red.600" fontSize="xl">
-                    Stock: {bike.stock}
+                    Stock: {phone.stock}
                   </Text>
                   <Text color="green.600" fontSize="xl">
-                    Precio: U$D {bike.price}
+                    Precio: U$D {phone.price}
                   </Text>
                 </Stack>
               </CardBody>
               <Divider />
               <CardFooter className="card-footer">
                 <ItemCount
-                  stock={bike.stock}
-                  id={bike.id}
-                  price={bike.price}
-                  name={bike.name}
+                  stock={phone.stock}
+                  id={phone.id}
+                  price={phone.price}
+                  name={phone.name}
                 />
               </CardFooter>
             </Card>

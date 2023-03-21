@@ -4,26 +4,26 @@ import { useParams } from "react-router-dom";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 const ItemListContainer = () => {
-  const [bikes, setBikes] = useState([]);
+  const [phones, setPhones] = useState([]);
   const { category } = useParams();
 
   useEffect(() => {
     const db = getFirestore();
-    const bikesCollection = collection(db, "telefonos");
-    getDocs(bikesCollection).then((querySnapshot) => {
-      const bikes = querySnapshot.docs.map((doc) => ({
+    const phonesCollection = collection(db, "telefonos");
+    getDocs(phonesCollection).then((querySnapshot) => {
+      const phones = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
-      setBikes(bikes);
+      setPhones(phones);
     });
   }, []);
 
-  const catFilter = bikes.filter((bike) => bike.category === category);
+  const catFilter = phones.filter((phone) => phone.category === category);
 
   return (
     <div>
-      {category ? <ItemList bikes={catFilter} /> : <ItemList bikes={bikes} />}
+      {category ? <ItemList phones={catFilter} /> : <ItemList phones={phones} />}
     </div>
   );
 };

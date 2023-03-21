@@ -6,17 +6,17 @@ const ItemDetailContainer = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const db = getFirestore();
-    const bikesCollection = collection(db, "telefonos");
-    getDocs(bikesCollection).then((querySnapshot) => {
-      const bikes = querySnapshot.docs.map((doc) => ({
+    const phonesCollection = collection(db, "telefonos");
+    getDocs(phonesCollection).then((querySnapshot) => {
+      const phones = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
-      setData(bikes);
+      setData(phones);
     });
   }, []);
 
-  return <ItemDetail bikes={data} />;
+  return <ItemDetail phones={data} />;
 };
 
 export default ItemDetailContainer;

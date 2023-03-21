@@ -1,18 +1,18 @@
 import Item from "./Item";
 import { Container } from "@chakra-ui/react";
-const ItemList = ({ bikes }) => {
+const ItemList = ({ phones }) => {
   return (
     <>
       <Container maxW="container.sm" className="main-catalogue">
-        {bikes?.map((bike) => (
+        {phones?.map((phone) => (
           <Item
-            key={bike.id}
-            id={bike.id}
-            name={bike.name}
-            description={bike.description}
-            price={bike.price}
-            stock={bike.stock}
-            category={bike.category}
+            key={phone.id}
+            id={phone.id}
+            name={phone.name}
+            description={phone.description}
+            price={phone.price}
+            stock={phone.stock}
+            category={phone.category}
           />
         ))}
       </Container>
