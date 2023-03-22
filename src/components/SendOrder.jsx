@@ -9,39 +9,26 @@ import {
   FormControl,
   FormLabel,
 } from "@chakra-ui/react";
-import { collection, getFirestore, addDoc } from "firebase/firestore";
-import { useState } from "react";
 
-const SendOrder = () => {
-  const [orderId, setOrderId] = useState(null);
+import {  useState } from "react";
+
+
+const SendOrder = ({createOrder}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name === "" || email === "") {
       alert("No pueden existir campos vacios");
     } else {
-      addDoc(ordersCollection, order).then(({ id }) => setOrderId(id)) ; 
+    createOrder(name,email)
     }
-    setEmail(" ");
   };
-
-  const db = getFirestore();
-  const ordersCollection = collection(db, "orden");
-
-  const order = {
-    name,
-    email,
-  };
-
   return (
     <div>
       <Center>
         <Heading>Envío de ordenes</Heading>
       </Center>
-      { !orderId ? 
       <Container>
         <FormControl>
           <form onSubmit={handleSubmit}>
@@ -55,18 +42,9 @@ const SendOrder = () => {
           </form>
         </FormControl>
       </Container>
-      :
-      <Center>
-        <Text as="b" m={3} fontSize="xl">
-          Order ID:{" "}
-        </Text>
-        <Text as="mark" fontSize="2xl">
-          {orderId}
-        </Text>
-        <Text as="b">Gracias por su compra</Text>
-
-      </Center>
-      } 
+      
+      
+      
     </div>
   );
 };

@@ -19,16 +19,48 @@ import { useState, useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import SendOrder from "./SendOrder";
 import { Link } from "react-router-dom";
-
+import { collection, getFirestore, addDoc } from "firebase/firestore";
 
 
 const Cart = () => {
   const [cart, setCart, removeItem, clear, getTotal] = useContext(CartContext);
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
+  const [orderId, setOrderId] = useState('');
+
+  const createOrder = (name, email) => {
+    
+   
+      let order = {
+        name,
+        email,
+      };
+      const db = getFirestore();
+      const ordersCollection = collection(db, "orden");
+      addDoc(ordersCollection, order).then(({ id }) => {
+        setOrderId(id)
+        clear()
+      }) ; 
+    
   
+  };
+
+  
+  if(orderId !== ''){
+    return(
+      <Center>
+      <Text as="b" m={3} fontSize="xl">
+        Order ID:{" "}
+      </Text>
+      <Text as="mark" fontSize="2xl">
+        {orderId}
+      </Text>
+      <Text as="b">Gracias por su compra</Text>
+
+    </Center>
+    )
+  }
   return (
     
+   
     <>
     <div>
       {
@@ -78,7 +110,7 @@ const Cart = () => {
             <Card maxW="sm">
             <Button
                   colorScheme="red"
-                  onClick={()=>clear(item.id)}
+                  onClick={()=>clear()}
                 >
                   Vaciar Carrito
             </Button>    
@@ -87,8 +119,8 @@ const Cart = () => {
           </Container>
         );
       })}
-      <SendOrder />
             
+            <SendOrder createOrder={createOrder}/>
         </div>
       }
     </div>
